@@ -1,0 +1,45 @@
+twilio:
+  account_sid: ACbb44c9954b87d2760dafe16268ee7db7
+  auth_token: c7412aa1b00e5dd3f38b30b7f2742794
+  trial_number: +15005550006
+
+spring:
+
+    security:
+      oauth2:
+        client:
+          registration:
+            google:
+              clientId: 360852527973-o0cjqr16bqnh8fmu2jmjf9csvh4unp39.apps.googleusercontent.com
+
+              clientSecret: 2pxKMU5ukgvZE1qp0FvEXKan
+
+              redirectUriTemplate: "http://localhost:81/oauth2/callback/google"
+              scope:
+                - email
+                - profiles
+            facebook:
+              clientId: 2818768698152882
+              clientSecret: ec62d3e64590f13b199b237ce897b28f
+              redirectUriTemplate: "http://localhost:81/oauth2/callback/facebook"
+              scope:
+                - email
+                - public_profile
+
+          provider:
+            facebook:
+              authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+              tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+              userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+  # Après vous être authentifié avec le fournisseur OAuth2,
+  # nous allons générer un jeton d'authentification pour l'utilisateur et envoyer le jeton au
+  # redirectUri mentionné par le client dans la requête / oauth2 / authorize.
+  # Nous n'utilisons pas de cookies, car ils ne fonctionneront pas bien dans les clients mobiles.
+    authorizedRedirectUris:
+      - http://localhost:81/oauth2/redirect?
